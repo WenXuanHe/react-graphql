@@ -3,12 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 import ChannelsListWithData from './components/ChannelsList';
 
+
 import { ApolloProvider } from 'react-apollo';
 import {ApolloClient} from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 const client = new ApolloClient({
-  link: new HttpLink({ uri: 'http://localhost:4000/graphql' }),
+  link: new HttpLink({ uri: 'http://localhost:5000/graphql' }),
   cache: new InMemoryCache()
 });
 
@@ -21,6 +22,7 @@ class App extends Component {
              <img src={logo} className="App-logo" alt="logo" />
              <h2>Welcome to Apollo</h2>
            </div>
+           
            <ChannelsListWithData />
          </div>
        </ApolloProvider>

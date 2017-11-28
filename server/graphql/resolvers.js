@@ -1,9 +1,10 @@
 const channels = [{
-    id: 1,
-    name: 'soccer',
-  }, {
-    id: 2,
+    id: '1',
     name: 'baseball',
+    messages: [{
+      id: '2',
+      text: 'baseball is life',
+    }]
   }];
 let current_id = 3;
 
@@ -16,7 +17,11 @@ const resolvers = {
             console.log(id);
             
             return channels.filter(item => item.id === +id);
-        }
+        },
+
+        channel: (root, { id }) => {
+            return channels.find(channel => channel.id === id);
+          },
     },
 
     Mutation: {

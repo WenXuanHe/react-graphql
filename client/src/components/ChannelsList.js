@@ -1,8 +1,9 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-  
-const channelsListQuery = gql`
+import AddChannelWithMutation from '../components/AddChannel';
+
+export const channelsListQuery = gql`
     query {
         channels {
             id
@@ -19,9 +20,12 @@ const ChannelsList = ({ data: {loading, error, channels }}) => {
     if (error) {
       return <p>{error.message}</p>;
     }
-    return <ul>
+    return <div>
+      <AddChannelWithMutation />
+      <ul>
       { channels.map( ch => <li key={ch.id}>{ch.name}</li> ) }
-    </ul>;
+    </ul>
+    </div>;
   };
 
 export default graphql(channelsListQuery)(ChannelsList);
