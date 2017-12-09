@@ -30,7 +30,15 @@ const resolvers = {
             let newChannel = {id: current_id++, name};
             channels.push(newChannel);
             return newChannel;
-        }
+        },
+        addMessage: (root, { message }) => {
+            const channel = channels.find(channel => channel.id === message.channelId);
+            if(!channel)
+              throw new Error("Channel does not exist");
+            const newMessage = { id: String(nextMessageId++), text: message.text };
+            channel.messages.push(newMessage);
+            return newMessage;
+          },
     }
 };
 
