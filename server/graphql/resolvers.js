@@ -14,13 +14,11 @@ const resolvers = {
         channels: (_, {id}) => {
             
             if(!id) return channels;
-            console.log(id);
-            
             return channels.filter(item => item.id === +id);
         },
 
         channel: (root, { id }) => {
-            return channels.find(channel => channel.id === id);
+            return channels.find(channel => +channel.id === id);
           },
     },
 

@@ -4,15 +4,15 @@ import gql from 'graphql-tag';
 import {withRouter} from 'react-router';
 
 export const channelDetailsQuery = gql`
-    query ChannelDetailsQuery($channelId : ID!) {
-    channel(id: $channelId) {
-        id
-        name
-        messages {
-        id
-        text
-        }
-    }
+    query ChannelDetailsQuery($channelId : Int!) {
+      channel(id: $channelId) {
+          id
+          name
+          messages {
+          id
+          text
+          }
+      }
     }
 `;
 
@@ -20,7 +20,7 @@ export const channelDetailsQuery = gql`
 class ChannelDetails extends React.Component{
 
     render(){
-        let {loading, error, channel} = this.props;
+        let {loading, error, channel} = this.props.data;
         if (loading) {
             return <p>Loading...</p>;
           }
@@ -30,7 +30,6 @@ class ChannelDetails extends React.Component{
           if(channel == null){
             return <div>not found</div>    
           }
-          alert(JSON.stringify(channel))
           return (<div>
               <div className="channelName">
                 {channel.name}
@@ -41,6 +40,6 @@ class ChannelDetails extends React.Component{
 
 export default graphql(channelDetailsQuery, {
     options: (props) => ({
-      variables: { channelId: props.match.params.channelId },
+      variables: { channelId: +props.match.params.channelId },
     }),
-  })(withRouter(ChannelDetails))
+  })(ChannelDetails)

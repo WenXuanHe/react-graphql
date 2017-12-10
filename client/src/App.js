@@ -26,7 +26,7 @@ class App extends Component {
             {/* <ChannelDetails/> */}
             <Switch>
               <Route path="/" exact  component={ChannelsList} />
-              <Route path="/channel/:id" component={ChannelDetails} />
+              <Route path="/channel/:channelId" component={ChannelDetails} />
             </Switch>
           </div>
         </ApolloProvider>
