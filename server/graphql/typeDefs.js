@@ -5,7 +5,7 @@ const typeDefs = `
         messages:[Message]
     }
     type Message {
-        id: ID!
+        id: Int!
         text: String
     }
 

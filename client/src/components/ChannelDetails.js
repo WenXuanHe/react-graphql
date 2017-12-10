@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import {withRouter} from 'react-router';
+import AddMessage from './AddMessage';
 
 export const channelDetailsQuery = gql`
     query ChannelDetailsQuery($channelId : Int!) {
@@ -30,11 +31,20 @@ class ChannelDetails extends React.Component{
           if(channel == null){
             return <div>not found</div>    
           }
-          return (<div>
-              <div className="channelName">
-                {channel.name}
-              </div>
-            </div>);
+          return (
+          <div>
+            <div className="channelName">
+              <h3>{channel.name}</h3>
+              <ul>
+              {
+                channel.messages && channel.messages.map((message, i) => {
+                  return <li key={i}>{message.text}</li>
+                })
+              }
+              </ul>
+            </div>
+            <AddMessage />
+          </div>);
     }
 }
 

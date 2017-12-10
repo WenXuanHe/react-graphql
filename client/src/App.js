@@ -13,6 +13,9 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
+/**
+ * apollo配合react-router
+ */
 class App extends Component {
   render() {
     return (

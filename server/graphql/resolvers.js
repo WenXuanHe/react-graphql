@@ -1,13 +1,13 @@
 const channels = [{
-    id: '1',
+    id: 1,
     name: 'baseball',
     messages: [{
-      id: '2',
+      id: 2,
       text: 'baseball is life',
     }]
   }];
 let current_id = 3;
-
+let nextMessageId = 3;
 const resolvers = {
 
     Query: {
@@ -30,7 +30,7 @@ const resolvers = {
             return newChannel;
         },
         addMessage: (root, { message }) => {
-            const channel = channels.find(channel => channel.id === message.channelId);
+            const channel = channels.find(channel => channel.id === +message.channelId);
             if(!channel)
               throw new Error("Channel does not exist");
             const newMessage = { id: String(nextMessageId++), text: message.text };
